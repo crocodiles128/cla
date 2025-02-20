@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campos Lima Advocacia e Assessoria Jurídica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="logo">
+                <img src="imgs/logo.jpg" alt="Campos Lima Advogados">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Serviços</a></li>
+                    <li><a href="#team">Equipe</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                    <li><a href="faq.html">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home">
+        <h1>Bem-vindo ao Campos Lima Advocacia e Assessoria Jurídica</h1>
+        <p>Trabalhista | Previdenciário | Cível | Família | Consumidor</p>
+        <p>Atendimento especializado</p>
+    </section>
+
+    <section id="testimonials">
+        <h2>Depoimentos</h2>
+        <div class="testimonial">
+            <p>"A equipe do Campos Lima Advocacia foi extremamente profissional e eficiente. Recomendo a todos!"</p>
+            <h3>- João Silva</h3>
+        </div>
+        <div class="testimonial">
+            <p>"Recebi um atendimento excelente e consegui resolver meu problema rapidamente. Muito obrigado!"</p>
+            <h3>- Maria Oliveira</h3>
+        </div>
+        <div class="testimonial">
+            <p>"Profissionais competentes e dedicados. Fiquei muito satisfeito com o serviço prestado."</p>
+            <h3>- Carlos Pereira</h3>
+        </div>
+        <div class="testimonial">
+            <p>"Atendimento de primeira qualidade. Recomendo fortemente os serviços do Campos Lima Advocacia."</p>
+            <h3>- Ana Costa</h3>
+        </div>
+    </section>
+
+    <section id="team">
+        <h2>Nossa Equipe</h2>
+        <div class="team-member">
+            <img src="imgs/libert-seibert.jpg" alt="Dr. João Silva">
+            <h3>Dr. Audrey Lima</h3>
+            <p>Especialista em Direito Civil</p>
+        </div>
+        <div class="team-member">
+            <img src="imgs/ana-campos.jpg" alt="Dra. Maria Oliveira">
+            <h3>Dra. Ana Campos</h3>
+            <p>Direito Civilista</p>
+        </div>
+        <div class="team-member">
+            <img src="imgs/libert-seibert.jpg" alt="Dr. Carlos Pereira">
+            <h3>Dr. Libert Seibert</h3>
+            <p>Direito Migrátorio e Internacional</p>
+        </div>
+        <div class="team-member">
+            <img src="imgs/michele-torres.jpg" alt="Dra. Ana Costa">
+            <h3>Dra. Michele Torres</h3>
+            <p>Direito Criminalista</p>
+        </div>
+    </section>
+
+    <section id="contact">
+        <h2>Contato</h2>
+        <p>Contato: (11) 98926-9667</p>
+        <p>Endereço: Rua Copo de Leite, 22 sala 04, São Paulo, Brazil</p>
+        <form id="contact-form" action="https://api.web3forms.com/submit" method="POST">
+
+            <!-- Replace with your Access Key -->
+            <input type="hidden" name="access_key" value="75bfb8ee-4d57-48f5-86c8-504cc2c2c50f">
+        
+            <!-- Form Inputs. Each input must have a name="" attribute -->
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Seu email" required>
+
+            <label for="celular">Celular:</label>
+            <input type="text" id="celular" name="celular" placeholder="Seu numero de telefone" required oninput="formatPhoneNumber(this)">
+            
+            <label for="mensagem">Mensagem:</label>
+            <textarea id="message" name="mensagem" placeholder="Sua mensagem" required></textarea>
+        
+            <!-- Honeypot Spam Protection -->
+            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+        
+            <!-- Custom Confirmation / Success Page -->
+            <input type="hidden" name="redirect" value="http://localhost/campos-lima-advogados/index.html?enviada#contact">
+        
+            <button type="submit">Submit Form</button>
+            <div id="notification">Mensagem enviada com sucesso!</div>
+        
+        </form>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Campos Lima Advogados. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="scripts.js"></script>
+    <script>
+        function showNotification() {
+            const notification = document.getElementById('notification');
+            notification.classList.add('show');
+            setTimeout(function() {
+                notification.classList.remove('show');
+            }, 3000);
+        }
+
+        function checkUrlParameter() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.has('enviada')) {
+                showNotification();
+            }
+        }
+
+        function formatPhoneNumber(input) {
+            let value = input.value.replace(/\D/g, '');
+            if (value.length > 2) {
+                value = value.replace(/^(\d{2})(\d)/, '$1 $2');
+            }
+            if (value.length > 7) {
+                value = value.replace(/(\d{2}) (\d{5})(\d)/, '$1 $2-$3');
+            }
+            input.value = value;
+        }
+
+        document.addEventListener('DOMContentLoaded', checkUrlParameter);
+    </script>
+</body>
+</html>

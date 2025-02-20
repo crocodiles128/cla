@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Campos Lima Advocacia e Assessoria Jurídica</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-wrapper">
+            <div class="logo">
+                <img src="imgs/logo.jpg" alt="Campos Lima Advogados">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#services">Serviços</a></li>
+                    <li><a href="index.html#team">Equipe</a></li>
+                    <li><a href="index.html#contact">Contato</a></li>
+                    <li><a href="faq.html" class="active">FAQ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="faq">
+        <h2>Perguntas Frequentes</h2>
+        <input type="text" id="faq-search" placeholder="Buscar perguntas..." onkeyup="filterFaq()">
+        <div class="faq-item">
+            <h3>Qual é o horário de atendimento?</h3>
+            <p>Nosso horário de atendimento é de segunda a sexta, das 9h às 18h.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Como posso agendar uma consulta?</h3>
+            <p>Você pode agendar uma consulta pelo telefone (11) 98926-9667 ou pelo nosso formulário de contato.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Quais são as áreas de atuação do escritório?</h3>
+            <p>Atuamos nas áreas de direito trabalhista, previdenciário, cível, família e consumidor.</p>
+        </div>
+        <div class="faq-item">
+            <h3>O escritório oferece consultoria online?</h3>
+            <p>Sim, oferecemos consultoria online por meio de videochamadas.</p>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2023 Campos Lima Advogados. Todos os direitos reservados.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.faq-item h3').forEach(item => {
+            item.addEventListener('click', () => {
+                const content = item.nextElementSibling;
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    content.style.padding = '0 10px';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + 'px';
+                    content.style.padding = '10px';
+                }
+                item.classList.toggle('active');
+            });
+        });
+
+        function filterFaq() {
+            const searchInput = document.getElementById('faq-search').value.toLowerCase();
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const question = item.querySelector('h3').textContent.toLowerCase();
+                if (question.includes(searchInput)) {
+                    item.classList.remove('hidden');
+                } else {
+                    item.classList.add('hidden');
+                }
+            });
+        }
+    </script>
+</body>
+</html>
